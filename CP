@@ -1,5 +1,5 @@
 {
-    preview_url: 'songs/.mp3',
-    name: '',
-    options: [``, ``, ``, ``]
-  },
+  preview_url: 'songs/.mp3',
+  name: '',
+  options: [``, ``, ``, ``]
+},

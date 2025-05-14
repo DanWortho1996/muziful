@@ -90,6 +90,42 @@ const originalSongs = [
     name: 'Show Me Love',
     options: [`Beautiful Things`, `Unstoppable`, `Sail`, `Show Me Love`]
   },
+  //15
+  {
+  preview_url: 'songs/immortals.mp3',
+  name: 'Immortals',
+  options: [`Believer`, `Immortals`, `Drops of Jupiter`, `Demons`]
+  },
+  //16
+  {
+  preview_url: 'songs/believer.mp3',
+  name: 'Believer',
+  options: [`Believer`, `Holiday`, `Immortals`, `Warrior`]
+  },
+  //17
+  {
+  preview_url: 'songs/thunder.mp3',
+  name: 'Thunder',
+  options: [`Nice To Meet You`, `Anxiety`, `Thunder`, `Back To Friends`]
+  },
+//18
+  {
+  preview_url: 'songs/drops-of-jupiter.mp3',
+  name: 'Drops of Jupiter',
+  options: [`Mystical Magical`, `Drops of Jupiter`, `Messy`, `Nokia`]
+  },
+  //19
+  {
+  preview_url: 'songs/carry-you-home.mp3',
+  name: 'Carry You Home',
+  options: [`What Was That`, `Carry You Home`, `Bad Dreams`, `Busy Woman`]
+  },
+  //20
+  {
+  preview_url: 'songs/trouble.mp3',
+  name: '',
+  options: [`Wake Me Up`, `Hey Brother`, `Trouble`, `For A Better Day`]
+  },
 ];
 
 let songs = shuffleArray([...originalSongs]);
