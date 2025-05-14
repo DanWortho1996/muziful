@@ -75,6 +75,18 @@ const songs = [
     name: `Can't Hold Us`,
     options: [`The Business`, `Can't Hold Us`, `Life Is A Highway`, `A Bar Song`]
   },
+  //13
+  {
+    preview_url: 'songs/last-of-my-kind.mp3',
+    name: 'Last of My Kind',
+    options: [`Last of My Kind`, `Africa`, `Old Phone`, `Ordinary`]
+  },
+  //14
+  {
+    preview_url: 'songs/show-me-love.mp3',
+    name: 'Show Me Love',
+    options: [`Beautiful Things`, `Unstoppable`, `Sail`, `Show Me Love`]
+  },
 ];
 
 let shuffledSongs = shuffleArray([...songs]);
