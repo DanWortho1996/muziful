@@ -40,7 +40,7 @@ const originalSongs = [
   {
     preview_url: 'songs/shut-up.mp3',
     name: 'Shut Up',
-    options: [`Shut Up`, `Hey Jude`, `Shut Up`, `Hotel California`]
+    options: [`Shut Up`, `Hey Jude`, `Year 3000`, `Hotel California`]
   },
   //7
   {
