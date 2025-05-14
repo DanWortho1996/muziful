@@ -3,51 +3,78 @@ let currentSongIndex = 0;
 let isPlaying = false;
 
 const songs = [
+  //1
   {
     preview_url: 'songs/azizam.mp3',
     name: 'Azizam',
     options: ['Azizam', 'Drunk Again', 'You Need Me', 'The A Team'],
   },
+  //2
   {
     preview_url: 'songs/sinner.mp3',
     name: 'Sinner',
     options: ['Mr. Brightside', 'Love The Way You Lie', 'Sinner', 'Gangsta Paradise'],
   },
+  //3
   {
     preview_url: 'songs/changes.mp3',
     name: 'Changes',
-    options: ['Siren', 'Run Boy Run', 'Golden Age', 'Changes'],
+    options: ['Siren', 'Run Boy Run', 'Jack & Gill', 'Changes'],
   },
+  //4
   {
     preview_url: 'songs/easy.mp3',
     name: 'Easy',
     options: [`Mockingbird`, `Where Is The Love?`, `Easy`, `Heavens`]
   },
+  //5
   {
     preview_url: 'songs/never-gonna-give-you-up.mp3',
     name: 'Never Gonna Give You Up',
     options: [`Paid My Dues`, `Never Gonna Give You Up`, `In The Air`, `Comfortably Numb`]
   },
+  //6
   {
     preview_url: 'songs/shut-up.mp3',
     name: 'Shut Up',
     options: [`Shut Up`, `Hey Jude`, `Shut Up`, `Hotel California`]
   },
+  //7
   {
     preview_url: 'songs/here-comes-the-sun.mp3',
     name: 'Here Comes The Sun',
     options: [`Let It Be`, `Here Comes The Sun`, `Blinding Lights`, `Bullet In A Gun`]
   },
+  //8
   {
     preview_url: 'songs/heavens.mp3',
     name: 'Heavens',
     options: [`I.O.U`, `Heavens`, `Smooth Criminal`, `The Hall of Fame`]
   },
+  //9
   {
     preview_url: 'songs/temperature.mp3',
     name: 'Temperature',
     options: [`Temperature`, `Mesmerize`, `Castle On The Hill`, `Umbrella`]
-  }
+  },
+  //10
+  {
+    preview_url: 'songs/stereo-hearts.mp3',
+    name: 'Stereo Hearts',
+    options: [`Eye Of The Tiger`, `Don't`, `Hello`, `Stereo Hearts`]
+  },
+  //11
+  {
+    preview_url: 'songs/in-the-air.mp3',
+    name: 'In The Air',
+    options: [`Run This Town`, `Can't Hold Us`, `In The Air`, `Take On Me`]
+  },
+  //12
+  {
+    preview_url: 'songs/cant-hold-us.mp3',
+    name: `Can't Hold Us`,
+    options: [`The Business`, `Can't Hold Us`, `Life Is A Highway`, `A Bar Song`]
+  },
 ];
 
 let shuffledSongs = shuffleArray([...songs]);
