@@ -98,9 +98,9 @@ const originalSongs = [
   },
   //16
   {
-  preview_url: 'songs/believer.mp3',
-  name: 'Believer',
-  options: [`Believer`, `Holiday`, `Immortals`, `Warrior`]
+  preview_url: 'songs/wake-me-up.mp3',
+  name: 'Wake Me Up',
+  options: [`Wake Me Up`, `Levels`, `S.O.S`, `the Nights`]
   },
   //17
   {
@@ -123,7 +123,7 @@ const originalSongs = [
   //20
   {
   preview_url: 'songs/trouble.mp3',
-  name: '',
+  name: 'Trouble',
   options: [`Wake Me Up`, `Hey Brother`, `Trouble`, `For A Better Day`]
   },
 ];
