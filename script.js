@@ -1,8 +1,11 @@
 let score = 0;
 let currentSongIndex = 0;
 let isPlaying = false;
+let timerStarted = false;
+let countdown;
+let timeLeft = 30;
 
-const songs = [
+const originalSongs = [
   //1
   {
     preview_url: 'songs/azizam.mp3',
@@ -89,81 +92,140 @@ const songs = [
   },
 ];
 
-let shuffledSongs = shuffleArray([...songs]);
+let songs = shuffleArray([...originalSongs]);
 
 const audioPlayer = document.getElementById('audio-player');
 const audioSource = document.getElementById('audio-source');
 const optionsContainer = document.getElementById('options-container');
 const nextRoundBtn = document.getElementById('next-round-btn');
+const restartBtn = document.getElementById('restart-btn');
 const scoreElement = document.getElementById('score');
+const timerElement = document.getElementById('timer');
 const messageElement = document.getElementById('message');
+const playBtn = document.getElementById('play-pause-btn');
+const playIcon = document.getElementById('play-icon');
+const pauseIcon = document.getElementById('pause-icon');
 
-// Shuffle helper
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// Update score display
 function updateScore() {
   scoreElement.innerText = `Score: ${score}`;
 }
 
-// Load the next song
-function loadNextSong() {
-  if (currentSongIndex >= shuffledSongs.length) {
-    messageElement.innerText = 'Congratulations, you finished the game!';
-    nextRoundBtn.style.display = 'none';
-    return;
-  }
+function updateTimerDisplay() {
+  timerElement.textContent = `Time left: ${timeLeft}s`;
+}
 
-  const song = shuffledSongs[currentSongIndex];
+function startTimer() {
+  timeLeft = 30;
+  updateTimerDisplay();
+  countdown = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      revealAnswer();
+      audioPlayer.pause();
+      playIcon.style.display = 'inline';
+      pauseIcon.style.display = 'none';
+    }
+  }, 1000);
+}
+
+function revealAnswer(selected) {
+  const correct = songs[currentSongIndex].name;
+  const options = document.querySelectorAll('.option');
+  options.forEach(option => {
+    if (option.textContent === correct) {
+      option.classList.add('correct');
+    } else {
+      option.classList.add('incorrect');
+    }
+    option.style.color = 'white';
+    option.onclick = null;
+  });
+  messageElement.innerText = selected ? (selected === correct ? 'Correct!' : 'Wrong!') : "Time's up!";
+  nextRoundBtn.style.display = selected === correct ? 'inline-block' : 'none';
+  restartBtn.style.display = selected !== correct ? 'inline-block' : 'none';
+}
+
+function checkAnswer(guess) {
+  clearInterval(countdown);
+  revealAnswer(guess);
+  if (guess === songs[currentSongIndex].name) {
+    score++;
+    updateScore();
+  } else {
+    audioPlayer.pause();
+    playIcon.style.display = 'inline';
+    pauseIcon.style.display = 'none';
+  }
+}
+
+function loadSong() {
+  clearInterval(countdown);
+  timerStarted = false;
+  timeLeft = 30;
+  updateTimerDisplay();
+
+  const song = songs[currentSongIndex];
   audioSource.src = song.preview_url;
   audioPlayer.load();
+  playIcon.style.display = 'inline';
+  pauseIcon.style.display = 'none';
+  isPlaying = false;
 
-  const shuffledOptions = shuffleArray([...song.options]);
   optionsContainer.innerHTML = '';
-
+  const shuffledOptions = shuffleArray([...song.options]);
   shuffledOptions.forEach(option => {
     const btn = document.createElement('button');
-    btn.innerText = option;
+    btn.className = 'option';
+    btn.textContent = option;
     btn.onclick = () => checkAnswer(option);
     optionsContainer.appendChild(btn);
   });
 
-  messageElement.innerText = '';
+  messageElement.textContent = '';
   nextRoundBtn.style.display = 'none';
+  restartBtn.style.display = 'none';
 }
 
-// Check if guess is correct
-function checkAnswer(guess) {
-  const correctAnswer = shuffledSongs[currentSongIndex].name;
-  if (guess === correctAnswer) {
-    score++;
-    messageElement.innerText = 'Correct!';
-    nextRoundBtn.style.display = 'inline-block';
-  } else {
-    messageElement.innerText = 'Wrong! Game Over!';
-    nextRoundBtn.style.display = 'none';
-    audioPlayer.pause();
-  }
-  updateScore();
-}
-
-// Next song button
 nextRoundBtn.addEventListener('click', () => {
   currentSongIndex++;
-  loadNextSong();
+  if (currentSongIndex < songs.length) {
+    loadSong();
+  } else {
+    messageElement.textContent = 'Congratulations, you finished the game!';
+    restartBtn.style.display = 'inline-block';
+  }
 });
 
-// Play/pause icon handling
-audioPlayer.addEventListener('play', () => {
-  isPlaying = true;
+restartBtn.addEventListener('click', () => {
+  score = 0;
+  currentSongIndex = 0;
+  songs = shuffleArray([...originalSongs]);
+  updateScore();
+  loadSong();
 });
 
-audioPlayer.addEventListener('pause', () => {
-  isPlaying = false;
+playBtn.addEventListener('click', () => {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'inline';
+    if (!timerStarted) {
+      startTimer();
+      timerStarted = true;
+    }
+  } else {
+    audioPlayer.pause();
+    playIcon.style.display = 'inline';
+    pauseIcon.style.display = 'none';
+  }
 });
 
-// Start game
+loadSong();
 updateScore();
-loadNextSong();

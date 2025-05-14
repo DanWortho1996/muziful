@@ -1,61 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
 }
 
 #game-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  max-width: 500px;
+  width: 100%;
 }
 
-#score {
-  font-size: 20px;
+h1 {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 10px;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #f0f0f0;
+#score, #timer {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 #options-container {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .option {
   background-color: #f0f0f0;
+  border: none;
   padding: 10px;
   margin: 5px;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .option:hover {
-  background-color: #ddd;
+  background-color: #d0d0d0;
+}
+
+.option.correct {
+  background-color: green;
+  color: white;
+}
+
+.option.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.play-pause-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #message {
-  margin-top: 20px;
   font-size: 18px;
-  color: #ff0000;
+  margin: 10px 0;
+  font-weight: bold;
 }
 
-#next-round-btn {
-  margin-top: 20px;
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #eee;
+}
+
+button:active {
+  background-color: #ccc;
+}
+
+@media (max-width: 600px) {
+  #game-container {
+    padding: 15px;
+    width: 90%;
+  }
+
+  button {
+    width: 100%;
+  }
 }

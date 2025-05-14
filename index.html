@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muziful</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Song Game</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <body>
   <div id="game-container">
-    <h1>Guess The Artist or Song</h1>
+    <h1>Guess the Song Game</h1>
     <div id="score">Score: 0</div>
+    <div id="timer">Time left: 30s</div>
 
-    <!-- Audio Player with Play/Pause Icon -->
-    <audio id="audio-player" controls>
-      <source id="audio-source" src="" type="audio/mpeg">
+    <audio id="audio-player">
+      <source id="audio-source" src="" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
 
-    <!-- Options -->
+    <button id="play-pause-btn" class="play-pause-btn">
+      <i id="play-icon" class="fas fa-play"></i>
+      <i id="pause-icon" class="fas fa-pause" style="display:none;"></i>
+    </button>
+
     <div id="options-container"></div>
-
-    <!-- Message Display -->
     <div id="message"></div>
-
-    <!-- Next Round Button -->
     <button id="next-round-btn" style="display:none;">Next Round</button>
+    <button id="restart-btn" style="display:none;">Restart</button>
   </div>
 
   <script src="script.js"></script>
