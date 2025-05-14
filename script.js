@@ -1,6 +1,7 @@
 let score = 0;
 let currentSongIndex = 0;
 let isPlaying = false;
+
 const songs = [
   {
     preview_url: 'songs/azizam.mp3',
@@ -17,7 +18,14 @@ const songs = [
     name: 'Changes',
     options: ['Siren', 'Run Boy Run', 'Golden Age', 'Changes'],
   },
+  {
+    preview_url: 'songs/easy.mp3',
+    name: 'Easy',
+    options: [`Mockingbird`, `Where Is The Love?`, `Easy`, `Heavens`]
+  }
 ];
+
+let shuffledSongs = shuffleArray([...songs]);
 
 const audioPlayer = document.getElementById('audio-player');
 const audioSource = document.getElementById('audio-source');
@@ -25,47 +33,46 @@ const optionsContainer = document.getElementById('options-container');
 const nextRoundBtn = document.getElementById('next-round-btn');
 const scoreElement = document.getElementById('score');
 const messageElement = document.getElementById('message');
-const playIcon = document.getElementById('play-icon');
-const pauseIcon = document.getElementById('pause-icon');
+
+// Shuffle helper
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
 
 // Update score display
 function updateScore() {
   scoreElement.innerText = `Score: ${score}`;
 }
 
-// Load a song and options
-function loadSong() {
-  const song = songs[currentSongIndex];
+// Load the next song
+function loadNextSong() {
+  if (currentSongIndex >= shuffledSongs.length) {
+    messageElement.innerText = 'Congratulations, you finished the game!';
+    nextRoundBtn.style.display = 'none';
+    return;
+  }
+
+  const song = shuffledSongs[currentSongIndex];
   audioSource.src = song.preview_url;
   audioPlayer.load();
+
+  const shuffledOptions = shuffleArray([...song.options]);
   optionsContainer.innerHTML = '';
-  song.options.forEach(option => {
-    const optionElement = document.createElement('div');
-    optionElement.classList.add('option');
-    optionElement.innerText = option;
-    optionElement.onclick = () => checkAnswer(option);
-    optionsContainer.appendChild(optionElement);
+
+  shuffledOptions.forEach(option => {
+    const btn = document.createElement('button');
+    btn.innerText = option;
+    btn.onclick = () => checkAnswer(option);
+    optionsContainer.appendChild(btn);
   });
+
   messageElement.innerText = '';
   nextRoundBtn.style.display = 'none';
 }
 
-// Toggle play/pause state
-audioPlayer.addEventListener('play', () => {
-  isPlaying = true;
-  playIcon.style.display = 'none';
-  pauseIcon.style.display = 'inline';
-});
-
-audioPlayer.addEventListener('pause', () => {
-  isPlaying = false;
-  playIcon.style.display = 'inline';
-  pauseIcon.style.display = 'none';
-});
-
-// Check if the guess is correct
+// Check if guess is correct
 function checkAnswer(guess) {
-  const correctAnswer = songs[currentSongIndex].name;
+  const correctAnswer = shuffledSongs[currentSongIndex].name;
   if (guess === correctAnswer) {
     score++;
     messageElement.innerText = 'Correct!';
@@ -73,31 +80,26 @@ function checkAnswer(guess) {
   } else {
     messageElement.innerText = 'Wrong! Game Over!';
     nextRoundBtn.style.display = 'none';
+    audioPlayer.pause();
   }
   updateScore();
 }
 
-// Start next round
+// Next song button
 nextRoundBtn.addEventListener('click', () => {
   currentSongIndex++;
-  if (currentSongIndex < songs.length) {
-    loadSong();
-    playIcon.style.display = 'inline';
-    pauseIcon.style.display = 'none';
-    isPlaying = false;
-  } else {
-    messageElement.innerText = 'Congratulations, you finished the game!';
-    nextRoundBtn.style.display = 'none';
-  }
+  loadNextSong();
 });
 
-// Handle play/pause icon clicks manually if desired (optional, as this is covered by the audio element)
-document.getElementById('play-pause-icon-container').addEventListener('click', () => {
-  if (isPlaying) {
-    audioPlayer.pause();
-  } else {
-    audioPlayer.play();
-  }
+// Play/pause icon handling
+audioPlayer.addEventListener('play', () => {
+  isPlaying = true;
 });
 
-loadSong();
+audioPlayer.addEventListener('pause', () => {
+  isPlaying = false;
+});
+
+// Start game
+updateScore();
+loadNextSong();
