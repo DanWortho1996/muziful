@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song Guessing Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div id="game-container">
+    <h1>Guess the Song Game</h1>
+    <div id="score">Score: 0</div>
+
+    <!-- Audio Player with Play/Pause Icon -->
+    <audio id="audio-player" controls>
+      <source id="audio-source" src="" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Play/Pause Icon -->
+    <div id="play-pause-icon-container">
+      <i id="play-icon" class="fas fa-play"></i>
+      <i id="pause-icon" class="fas fa-pause" style="display:none;"></i>
+    </div>
+
+    <!-- Options -->
+    <div id="options-container"></div>
+
+    <!-- Message Display -->
+    <div id="message"></div>
+
+    <!-- Next Round Button -->
+    <button id="next-round-btn" style="display:none;">Next Round</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
