@@ -22,6 +22,31 @@ const songs = [
     preview_url: 'songs/easy.mp3',
     name: 'Easy',
     options: [`Mockingbird`, `Where Is The Love?`, `Easy`, `Heavens`]
+  },
+  {
+    preview_url: 'songs/never-gonna-give-you-up.mp3',
+    name: 'Never Gonna Give You Up',
+    options: [`Paid My Dues`, `Never Gonna Give You Up`, `In The Air`, `Comfortably Numb`]
+  },
+  {
+    preview_url: 'songs/shut-up.mp3',
+    name: 'Shut Up',
+    options: [`Shut Up`, `Hey Jude`, `Shut Up`, `Hotel California`]
+  },
+  {
+    preview_url: 'songs/here-comes-the-sun.mp3',
+    name: 'Here Comes The Sun',
+    options: [`Let It Be`, `Here Comes The Sun`, `Blinding Lights`, `Bullet In A Gun`]
+  },
+  {
+    preview_url: 'songs/heavens.mp3',
+    name: 'Heavens',
+    options: [`I.O.U`, `Heavens`, `Smooth Criminal`, `The Hall of Fame`]
+  },
+  {
+    preview_url: 'songs/temperature.mp3',
+    name: 'Temperature',
+    options: [`Temperature`, `Mesmerize`, `Castle On The Hill`, `Umbrella`]
   }
 ];
 
