@@ -100,7 +100,7 @@ const originalSongs = [
   {
   preview_url: 'songs/wake-me-up.mp3',
   name: 'Wake Me Up',
-  options: [`Wake Me Up`, `Levels`, `S.O.S`, `the Nights`]
+  options: [`Wake Me Up`, `Levels`, `S.O.S`, `The Nights`]
   },
   //17
   {
