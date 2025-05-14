@@ -108,7 +108,7 @@ const originalSongs = [
   name: 'Thunder',
   options: [`Nice To Meet You`, `Anxiety`, `Thunder`, `Back To Friends`]
   },
-//18
+  //18
   {
   preview_url: 'songs/drops-of-jupiter.mp3',
   name: 'Drops of Jupiter',
